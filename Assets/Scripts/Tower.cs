@@ -8,7 +8,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fireRate = 1f;
 
-    [Header("Tower Configuration")]
+    [Header("Minor Configurations")]
+    [SerializeField] private float angularTolerance = 5f;
+
+    [Header("Tower Demands")]
     [SerializeField] private string enemyTag = "Enemy";
     [SerializeField] private Transform partToRotate;
     [SerializeField] private GameObject projectilePrefab;
@@ -54,7 +57,7 @@ public class Tower : MonoBehaviour
         if (target == null) return;
 
         LockOn();
-        if (fireCountdown <= 0f)
+        if (fireCountdown <= 0f && IsFacingTarget())
         {
             Shoot();
             fireCountdown = 1f / fireRate;
@@ -76,9 +79,14 @@ public class Tower : MonoBehaviour
         GameObject projectileGO = Instantiate(projectilePrefab, firepoint.position, firepoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 
-        if (projectile != null) projectile.Seek(target);
+        if (projectile != null) projectile.Target(target);
+    }
 
-        Debug.Log("SHOOOOOT!");
+    private bool IsFacingTarget()
+    {
+        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        float angle = Vector3.Angle(partToRotate.forward, dirToTarget);
+        return Mathf.Abs(angle) < angularTolerance;
     }
 
     private void OnDrawGizmosSelected()

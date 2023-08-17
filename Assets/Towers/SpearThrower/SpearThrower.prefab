@@ -578,6 +578,7 @@ MonoBehaviour:
   range: 6.5
   rotationSpeed: 10
   fireRate: 1
+  angularTolerance: 20
   enemyTag: Enemy
   partToRotate: {fileID: 8814553503327860272}
   projectilePrefab: {fileID: 2882215297321888784, guid: 2456b124817d7714daacab62c17f6e3a, type: 3}

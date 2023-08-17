@@ -46,10 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  parabolical: 0
-  initialSpeed: 20
-  launchAngle: 45
-  gravity: 9.81
+  projectileMaxDistance: 10
+  seekTarget: 0
+  moveYAxis: 0
 --- !u!1 &8297675179478715786
 GameObject:
   m_ObjectHideFlags: 0

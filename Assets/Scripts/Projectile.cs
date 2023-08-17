@@ -4,103 +4,76 @@ public class Projectile : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float speed = 35f;
-    [SerializeField] private bool parabolical = false;
+    [SerializeField] private float projectileMaxDistance = 5f;
 
-    [Header("Parabolical Movement")]
-    [SerializeField] private float initialSpeed = 20f;
-    [SerializeField] private float launchAngle = 45f;
-    [SerializeField] private float gravity = 9.81f;
+    [Header("Tweaks")]
+    [SerializeField] private bool seekTarget = false;
+
+    [Header("Config")]
+    [SerializeField] private bool moveYAxis = false;
 
     private Transform target;
+    private Vector3 targetPosition;
 
-    private Vector3 initialPosition;
-    private Vector3 initialVelocity;
+    private bool targetAimed = false;
+    private float projectileDistance = 0f;
 
-    private float timeSinceLaunch = 0f;
-
-    private void Start()
+    public void Target(Transform _target)
     {
-        if (parabolical)
-        {
-            initialPosition = transform.position;
-            CalculateInitialVelocity();
-        }
-    }
+        if (seekTarget) target = _target;
+        else targetPosition = _target.position;
 
-    public void Seek(Transform _target)
-    {
-        target = _target;
     }
 
     private void Update()
     {
-        if (target == null) { Destroy(gameObject); return; }
-        if (parabolical) ParabolicalTrajectory();
-        else LinearTrajectory();
+        //if (target == null) { Destroy(gameObject); return; }
+        LinearTrajectory();
+        ProjectileLifetime();
     }
 
     private void LinearTrajectory()
     {
-        Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
+        Vector3 dir;
+        if (seekTarget) { dir = target.position - transform.position; LookAt(); }
+        else
+        {            
+            if (!targetAimed) 
+            {
+                dir = targetPosition - transform.position;
+                LookAt(); 
+                targetAimed = true;
+            }
+            else dir = transform.forward;
+        }
+        if (!moveYAxis) dir.y = 0;
 
         if(dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
-            return;
         }
-
-        LookAt();
+        projectileDistance += distanceThisFrame; //Contabiliza a distância ja percorrida pelo projetil
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-
     }
 
-    private void ParabolicalTrajectory()
+    private void ProjectileLifetime()
     {
-        if (timeSinceLaunch < 0.1f) // Initial delay to avoid inaccuracies
-        {
-            timeSinceLaunch += Time.deltaTime;
-            return;
-        }
-
-        float horizontalDistance = initialVelocity.x * timeSinceLaunch;
-        float verticalDistance = (initialVelocity.y * timeSinceLaunch) - (0.5f * gravity * timeSinceLaunch * timeSinceLaunch);
-
-        Vector3 newPosition = initialPosition + new Vector3(horizontalDistance, verticalDistance, 0);
-        transform.position = newPosition;
-
-        Vector3 nextPosition = initialPosition + new Vector3(horizontalDistance + initialVelocity.x * Time.deltaTime, verticalDistance, initialVelocity.x * Time.deltaTime);
-        RotateToDirection(nextPosition - newPosition);
-
-        timeSinceLaunch += Time.deltaTime;
+        if (projectileDistance >= projectileMaxDistance) Destroy(gameObject);
     }
 
     private void HitTarget()
     {
-        Destroy(gameObject);
+        Debug.Log("Alvo Acertado");
     }
 
     private void LookAt()
     {
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir, Vector3.up);
+        Vector3 direct;
+        if (target != null) direct = target.position - transform.position; //Difene o alvo que ira mirar.
+        else direct = targetPosition - transform.position;
+        if (!moveYAxis) direct.y = 0; //Faz com que o projetil não mire no alvo mesmo caso nao deva obedecer ao eixo Y.
+        Quaternion lookRotation = Quaternion.LookRotation(direct, Vector3.up);
         transform.rotation = lookRotation;
-    }
-
-    private void RotateToDirection(Vector3 direction)
-    {
-        if (direction != Vector3.zero)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(direction);
-            transform.rotation = newRotation;
-        }
-    }
-
-    private void CalculateInitialVelocity()
-    {
-        float horizontalSpeed = initialSpeed * Mathf.Cos(launchAngle * Mathf.Deg2Rad);
-        float verticalSpeed = initialSpeed * Mathf.Sin(launchAngle * Mathf.Deg2Rad);
-
-        initialVelocity = new Vector3(horizontalSpeed, verticalSpeed, initialSpeed);
     }
 }
