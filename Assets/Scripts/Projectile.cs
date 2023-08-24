@@ -3,6 +3,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Stats")]
+    [SerializeField] private float damage = 5f;
+    [SerializeField] private int pierce = 2;
     [SerializeField] private float speed = 35f;
     [SerializeField] private float projectileMaxDistance = 5f;
 
@@ -16,13 +18,31 @@ public class Projectile : MonoBehaviour
     private Vector3 targetPosition;
 
     private bool targetAimed = false;
+    private int pierceUsed = 0;
     private float projectileDistance = 0f;
 
-    public void Target(Transform _target)
+    public void Target(Transform _target, float _damage, int _pierce, float _speed, float _projectileMaxDistance, bool _seekTarget, bool _moveYAxis)
     {
         if (seekTarget) target = _target;
         else targetPosition = _target.position;
+        damage = _damage;
+        pierce = _pierce;
+        speed = _speed;
+        projectileMaxDistance = _projectileMaxDistance;
+        seekTarget = _seekTarget;
+        moveYAxis = _moveYAxis;
 
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("Enemy"))
+        {
+            Debug.Log("ACERTEI" + collider.gameObject.name);
+            Destroy(collider.gameObject);
+            pierceUsed++;
+            if (pierceUsed >= pierce) Destroy(gameObject);
+        }
     }
 
     private void Update()
@@ -49,10 +69,6 @@ public class Projectile : MonoBehaviour
         }
         if (!moveYAxis) dir.y = 0;
 
-        if(dir.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-        }
         projectileDistance += distanceThisFrame; //Contabiliza a distância ja percorrida pelo projetil
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }

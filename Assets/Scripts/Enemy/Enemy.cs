@@ -4,10 +4,12 @@ public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float speed = 5f;
+    [SerializeField] private int dangerLevel = 1;
     [SerializeField] private float waypointCheckOffset = 0.2f;
 
     private Transform target;
     private int wavepointIndex = 0;
+    private float distanceWalked = 0f;
 
     private void Start()
     {
@@ -29,6 +31,8 @@ public class Enemy : MonoBehaviour
             transform.rotation = lookRotation;
         }
 
+        distanceWalked += speed * Time.deltaTime;
+
         if (Mathf.Pow(transform.position.x - target.position.x, 2) + Mathf.Pow(transform.position.z - target.position.z, 2) <= waypointCheckOffset)
         {
             GetNextWaypoint();
@@ -42,5 +46,15 @@ public class Enemy : MonoBehaviour
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    public float GetWalkedDistance()
+    {
+        return distanceWalked;
+    }
+
+    public int GetDangerLevel()
+    {
+        return dangerLevel;
     }
 }

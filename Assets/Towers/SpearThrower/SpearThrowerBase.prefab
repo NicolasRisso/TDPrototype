@@ -628,9 +628,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30363655a63ab741b91d3b79a949129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  rotationSpeed: 10
+  damage: 5
+  pierce: 2
+  speed: 25
   fireRate: 1
+  range: 5
+  projectileMaxDistance: 10
+  rotationSpeed: 10
+  seekTarget: 0
+  moveYAxis: 0
+  isAwake: 0
   angularTolerance: 20
   enemyTag: Enemy
   partToRotate: {fileID: 7474847874537642538}
