@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 653932783649344884}
   m_Layer: 0
   m_Name: Crossbow
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2452152224638912668}
   m_Layer: 0
   m_Name: Foot
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4605381073646858352}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 9009402848414522193}
   m_Layer: 0
   m_Name: BasePequena
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4633715138220943652}
   m_Layer: 0
   m_Name: Corda
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 5039338789235688626}
   m_Layer: 0
   m_Name: Apoio
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 8560017274009337787}
   m_Layer: 0
   m_Name: Lanca
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -591,9 +591,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7474847873570491786}
   - component: {fileID: 7474847873570491785}
+  - component: {fileID: 9149614364521165467}
   m_Layer: 0
   m_Name: SpearThrowerBase
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,6 +636,18 @@ MonoBehaviour:
   partToRotate: {fileID: 7474847874537642538}
   projectilePrefab: {fileID: 2882215297321888784, guid: 2456b124817d7714daacab62c17f6e3a, type: 3}
   firepoint: {fileID: 7474847874865444558}
+--- !u!114 &9149614364521165467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7474847873570491787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e932a162bf51d2b438cdf42acdace0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7474847874537642539
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +659,7 @@ GameObject:
   - component: {fileID: 7474847874537642538}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -678,7 +691,7 @@ GameObject:
   - component: {fileID: 7474847874865444558}
   m_Layer: 0
   m_Name: Firepoint
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -709,7 +722,7 @@ GameObject:
   - component: {fileID: 6931400418232818962}
   m_Layer: 0
   m_Name: spearthrower_base
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -749,9 +762,12 @@ GameObject:
   - component: {fileID: 5204687160153804932}
   - component: {fileID: 839522744653438063}
   - component: {fileID: 6003514232241418527}
+  - component: {fileID: 2367138326315084750}
+  - component: {fileID: 7525873426466000335}
+  - component: {fileID: 7278073450486455742}
   m_Layer: 0
   m_Name: BasePrincipal
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,3 +851,45 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8512660400230113861, guid: 46ff0031ce5b78742822e1c667bcb938, type: 3}
+--- !u!114 &2367138326315084750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209674100252420135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917ecedd1d8e08a4eb357148a706c49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7525873426466000335
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209674100252420135}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &7278073450486455742
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209674100252420135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.0025000002
+  m_Height: 0.005
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

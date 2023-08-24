@@ -8,6 +8,9 @@ public class Tower : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fireRate = 1f;
 
+    [Header("TestBase")]
+    [SerializeField] private bool isAwake = false;
+
     [Header("Minor Configurations")]
     [SerializeField] private float angularTolerance = 5f;
 
@@ -27,6 +30,8 @@ public class Tower : MonoBehaviour
 
     private void UpdateTarget()
     {
+        if (!isAwake) return;
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -51,6 +56,8 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
+        if (!isAwake) return;
+
         fireCountdown -= Time.deltaTime;
 
         //Security to avoid null targets
@@ -93,5 +100,10 @@ public class Tower : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    public void SetIsAwake(bool isAwake)
+    {
+        this.isAwake = isAwake;
     }
 }
