@@ -4,12 +4,19 @@ public class TowerPainting : MonoBehaviour
 {
     private Material originalMaterial;
 
+    private Renderer meshRenderer;
+
     private void Awake()
     {
-        if (GetComponent<Renderer>() != null) originalMaterial = GetComponent<Renderer>().material;
+        if (GetComponent<Renderer>() != null)
+        {
+            meshRenderer = GetComponent<Renderer>();
+            originalMaterial = meshRenderer.material;
+        }
+        else Debug.Log("Null Renderer to paint Towers");
     }
 
-    public void ApplyMaterial(Transform transform, Material material)
+    private void ApplyMaterialLoop(Transform transform, Material material)
     {
         foreach (Transform child in transform)
         {
@@ -19,6 +26,12 @@ public class TowerPainting : MonoBehaviour
                 ApplyMaterial(child, material);
             }
         }
+    }
+
+    public void ApplyMaterial(Transform transform, Material material)
+    {
+        //if (meshRenderer.material == material) return;
+        ApplyMaterialLoop(transform, material);
     }
 
     public void PaintBackToOriginal()
