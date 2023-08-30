@@ -38,8 +38,7 @@ public class Projectile : MonoBehaviour
     {
         if (collider.CompareTag("Enemy"))
         {
-            Debug.Log("ACERTEI" + collider.gameObject.name);
-            Destroy(collider.gameObject);
+            collider.GetComponent<Health>().Damage(damage);
             pierceUsed++;
             if (pierceUsed >= pierce) Destroy(gameObject);
         }
