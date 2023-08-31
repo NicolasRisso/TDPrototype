@@ -41,6 +41,6 @@ public class TowerPainting : MonoBehaviour
 
     private void Paint(Transform transform, Material material)
     {
-        if (transform.GetComponent<Renderer>() != null) transform.GetComponent<Renderer>().material = material;
+        if (transform.GetComponent<Renderer>() != null && transform.name != "Range") transform.GetComponent<Renderer>().material = material;
     }
 }

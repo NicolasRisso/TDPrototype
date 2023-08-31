@@ -17,6 +17,7 @@ public class Building : MonoBehaviour
     private GameObject towerPreview;
 
     private TowerPainting towerPainting;
+    private TowerRange towerRange;
 
     private bool canBePlaced = false;
     private bool inBuildingMode = false;
@@ -31,12 +32,14 @@ public class Building : MonoBehaviour
             {
                 towerPreview = Instantiate(towerPreviewPrefab);
                 if (towerPreview.GetComponent<TowerPainting>() != null) towerPainting = towerPreview.GetComponent<TowerPainting>();
+                if (towerPreview.GetComponent<TowerRange>() != null) towerRange = towerPreview.GetComponent<TowerRange>();
                 towerPreview.SetActive(false);
             }
 
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, 10f, LayerMask.GetMask("Buildable")))
             {
                 towerPreview.SetActive(true);
+                towerRange.Enabled(true);
                 Vector3 tmp = new Vector3(hitInfo.point.x, hitInfo.point.y + yOffSet, hitInfo.point.z);
                 towerPreview.transform.position = tmp;
                 towerPreview.transform.rotation = Quaternion.identity; // Ou a rotação desejada
@@ -82,6 +85,7 @@ public class Building : MonoBehaviour
         {
             GameObject tmp = Instantiate(towerPreviewPrefab, towerPreview.transform.position, towerPreview.transform.rotation);
             tmp.GetComponent<Tower>().SetIsAwake(true);
+            towerRange.Enabled(false);
             Destroy(towerPreview);
         }
     }

@@ -77,11 +77,6 @@ public class Projectile : MonoBehaviour
         if (projectileDistance >= projectileMaxDistance) Destroy(gameObject);
     }
 
-    private void HitTarget()
-    {
-        Debug.Log("Alvo Acertado");
-    }
-
     private void LookAt()
     {
         Vector3 direct;

@@ -11,7 +11,6 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        if (healthBar == null) Debug.Log("AAAAAAAAAAAAA");
         healthBar.SetMaxHealth(maxHealth);
     }
 
