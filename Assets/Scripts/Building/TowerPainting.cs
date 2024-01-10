@@ -8,11 +8,20 @@ public class TowerPainting : MonoBehaviour
 
     private void Awake()
     {
+        Transform tmp = transform.GetChild(0);
         if (GetComponent<Renderer>() != null)
         {
             meshRenderer = GetComponent<Renderer>();
             originalMaterial = meshRenderer.material;
         }
+        else if (tmp.name == "BasePrincipal")
+        {
+            if (tmp.GetComponent<Renderer>() != null)
+            {
+                meshRenderer = tmp.GetComponent<Renderer>();
+                originalMaterial = meshRenderer.material;
+            } else Debug.Log("Null Renderer to BasePrincipal");
+        } 
         else Debug.Log("Null Renderer to paint Towers");
     }
 

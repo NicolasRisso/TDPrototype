@@ -65,7 +65,7 @@ public class Building : MonoBehaviour
         {
             PlaceTower();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
             inBuildingMode = false;
         }
