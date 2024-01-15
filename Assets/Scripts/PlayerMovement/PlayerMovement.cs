@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fastUpSpeed = 10f;
     [SerializeField] private float downSpeed = 5f;
     [SerializeField] private float fastDownSpeed = 10f;
+    [SerializeField] private bool mainScreen = false;
 
     [Header("Key Configuration")]
     [SerializeField] private KeyCode sprint;
@@ -29,9 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        DetectFullScreen();
+        if (mainScreen) return;
         SpeedDetector();
         Movement();
-        DetectFullScreen();
     }
 
     private void Movement()
