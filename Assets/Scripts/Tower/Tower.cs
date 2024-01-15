@@ -32,10 +32,13 @@ public class Tower : MonoBehaviour
     private Transform target;
     private Quaternion lookRotationWAdjust;
 
+    private AudioSource audioSource;
+
     private float fireCountdown = 0f;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("UpdateTarget", 0f, 0.2f);
     }
 
@@ -141,6 +144,8 @@ public class Tower : MonoBehaviour
     {
         GameObject projectileGO = Instantiate(projectilePrefab, firepoint.position, lookRotationWAdjust);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
+
+        audioSource.Play();
 
         if (projectile != null) projectile.Target(target, damage, pierce, speed, projectileMaxDistance, seekTarget, moveYAxis);
     }

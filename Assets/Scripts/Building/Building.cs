@@ -14,6 +14,11 @@ public class Building : MonoBehaviour
     [SerializeField] private float yOffSet = 0.15f;
     [SerializeField] private float yTolerance = 0.05f;
 
+    [Header("Pause Menu")]
+    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private ControlMenu controlsMenu;
+    [SerializeField] private ControlMenu creditsMenu;
+
     private GameObject towerPreview;
 
     private TowerPainting towerPainting;
@@ -21,6 +26,7 @@ public class Building : MonoBehaviour
 
     private bool canBePlaced = false;
     private bool inBuildingMode = false;
+    private bool inPause = false;
 
     private void Update()
     {
@@ -73,9 +79,22 @@ public class Building : MonoBehaviour
 
     private void ToggleBuildingMode()
     {
-        if (Input.GetKeyDown(buildKey))
+        if (Input.GetKeyDown(buildKey) && !inPause)
         {
             inBuildingMode = !inBuildingMode;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !inBuildingMode && !inPause){
+            controlsMenu.CloseControlMenu();
+            creditsMenu.CloseControlMenu();
+            pauseMenu.GetComponent<PauseMenu>().Pause(true);
+            inPause = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && inPause)
+        {
+            pauseMenu.Pause(false);
+            controlsMenu.CloseControlMenu();
+            creditsMenu.CloseControlMenu();
+            inPause = false;
         }
     }
 

@@ -24,12 +24,14 @@ public class PlayerMovement : MonoBehaviour
     {
         cController = GetComponent<CharacterController>();
         currentSpeed = speed;
+        Screen.fullScreen = true;
     }
 
     void Update()
     {
         SpeedDetector();
         Movement();
+        DetectFullScreen();
     }
 
     private void Movement()
@@ -57,6 +59,14 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = speed;
             if (Input.GetKey(up)) verticalSpeed = upSpeed;
             else if (Input.GetKey(down)) verticalSpeed = -downSpeed;
+        }
+    }
+
+    private void DetectFullScreen()
+    {
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            Screen.fullScreen = !Screen.fullScreen;
         }
     }
 }

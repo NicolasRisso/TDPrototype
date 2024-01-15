@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
     [Header("Health Status")]
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private GameObject deathSound;
 
     private float currentHealth;
 
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour
 
     private void Kill()
     {
+        Instantiate(deathSound, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

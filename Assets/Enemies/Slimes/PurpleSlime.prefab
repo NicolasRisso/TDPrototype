@@ -578,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30000
   healthBar: {fileID: 9193463022805393725}
+  deathSound: {fileID: 1881888508582615363, guid: b93af9aaa2b165348a19d12a87d3e3d0, type: 3}
 --- !u!135 &5894193054998416152
 SphereCollider:
   m_ObjectHideFlags: 0
