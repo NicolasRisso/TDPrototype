@@ -752,7 +752,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "This game was developed by Nicolas Risso. Although I used some free assets/sounds,
     everything else was made by me.\r\nCredits below:\n\nlow poly water - ebru dogan\nmain
-    menu music - HenryOfSkalitz\ngame music - ZHR\xD8"
+    menu music - HenryOfSkalitz\ngame music - ZHR\xD8\nSlime Death sound - DrMinky\nTower
+    bow sound - Erdie\nButton Click - Christopherderp\nButton Hover - deadsillyrabbit"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95c3d2f88d023e24d9ab29648174807e, type: 2}
   m_sharedMaterial: {fileID: -9178192771663215480, guid: 95c3d2f88d023e24d9ab29648174807e, type: 2}
@@ -779,8 +780,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

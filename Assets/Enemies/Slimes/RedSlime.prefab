@@ -579,6 +579,7 @@ MonoBehaviour:
   maxHealth: 125
   healthBar: {fileID: 9193463022805393725}
   deathSound: {fileID: 1881888508582615363, guid: b93af9aaa2b165348a19d12a87d3e3d0, type: 3}
+  deathEffect: {fileID: 6529236098048213001, guid: 17d9ec6d83941db40b511de865f1af43, type: 3}
 --- !u!135 &5894193054998416152
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -752,7 +752,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD: MOVE
 
-    Q: BUILD MODE
+    CTRL: SPRINT
+
+    SPACE: FLY UP
+
+    SHIFT: FLY DOWN
+
+    Q:
+    BUILD MODE
 
     LMB: CONFIRM
 
